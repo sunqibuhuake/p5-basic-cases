@@ -1,13 +1,12 @@
-function  setup() {
+function setup() {
 
-	createCanvas(500, 500);
+	createCanvas(500, 500); //size()
 	background(255, 255, 255);
 	noLoop();
 
 }
 
 function draw() {
-
 
 	fill(100, 100, 100, 100);
 	strokeWeight(10);
@@ -23,4 +22,8 @@ function draw() {
 	strokeWeight(10);
 	ellipse(250, 250, 50, 50);
 
+}
+
+function func() {
+ 	// do nothing
 }

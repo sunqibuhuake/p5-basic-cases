@@ -20,6 +20,7 @@ function draw() {
     }
 }
 
+// 构造函数
 function CustomPolygon(cx, cy, r, c, count) {
     this.cx = cx;
     this.cy = cy;
@@ -28,6 +29,7 @@ function CustomPolygon(cx, cy, r, c, count) {
     this.color = c;
 }
 
+// 原型链
 CustomPolygon.prototype = {
     drawPolygon: function () {
         strokeWeight(3);
@@ -45,7 +47,6 @@ CustomPolygon.prototype = {
         endShape(CLOSE);
         pop();
     },
-
     isInside: function(x, y) {
         var dst = dist( x, y, this.cx, this.cy);
         if (dst < this.r) {
@@ -54,5 +55,29 @@ CustomPolygon.prototype = {
             return false;
         }
     }
-
 }
+
+
+// 构造函数
+function Book( title, price, author) {
+  this.title = title;
+  this.price = price;
+  this.author = author;
+  this.init();
+}
+
+Book.prototype = {
+  getAuthor: function() {
+    return this.author;
+  },
+  getPrice: function() {
+    return this.price;
+  },
+  init: function() {
+    this.id = Math.random(); // random(1)
+  }
+}
+
+var mybook = new Book('abc', 23, 'Tom');
+
+console.log(mybook.getAuthor());
