@@ -1,18 +1,18 @@
-
 // 全局变量
 var arr = []
 var count = 10
+
 function setup() {
   createCanvas(500, 500)
   noFill()
-  // 实例化
+  // 实例化操作放在setup 函数中
   for (var i = 0; i < count; i++) {
     var c = color(random(255), random(255), random(255))
     var pos = {
       x: random(width),
       y: random(height)
     }
-    var cc = new CustomCircle(40, c, 'circle1', pos)
+    var cc = new CustomCircle(40, c, 'circle' + i, pos)
     // arr[i] = cc
     arr.push(cc)
   }
@@ -46,6 +46,8 @@ function draw() {
   // })
 }
 
+
+// CustomCirlce Class
 function CustomCircle(radius, c, text, pos) {
     this.radius = radius
     this.c = c
@@ -54,15 +56,16 @@ function CustomCircle(radius, c, text, pos) {
     // 非传入属性
     this.delta = random(0.02)
     this.t = random(10);
+    // 预设当前未被鼠标悬浮
+    this.isHover = false;
 }
 
-// js 原型链
+// js 原型链知识
 CustomCircle.prototype = {
   draw: function() {
     this.drawCircle()
     this.drawText()
     this.move()
-
   },
   drawCircle: function() {
     stroke(this.c)
@@ -86,33 +89,19 @@ CustomCircle.prototype = {
     this.radius += 2
   },
   mouseDetect: function() {
+
+    // 圆心坐标
     var cx = this.pos.x;
     var cy = this.pos.y;
 
+    // 鼠标在画布的坐标
     var mx = mouseX;
     var my = mouseY;
 
     // dist()函数获取两点间距
-    // 与圆圈的半径进行比较改变字体颜色
-    // 圆圈半径并非this.radius 而是 this.currentRadius
-
+    // 与当前半径(this.currentRadius)判断
 
   }
 }
 
 
-
-
-
-// javascript Array.map
-var arr2 = [1,2,3];
-var arr3 = [];
-// arr2.forEach(function(n) {
-//   n = n + 1;
-//   arr3.push(n)
-// })
-
-arr3 = arr2.map(function(n) {
-  return n + 1;
-})
-console.log(arr3);
