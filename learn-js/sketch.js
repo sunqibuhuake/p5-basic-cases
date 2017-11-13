@@ -54,7 +54,7 @@ function CustomCircle(radius, c, text, pos) {
     this.text = text
     this.pos = pos
     // 非传入属性
-    this.delta = random(0.02)
+    this.delta = random(0.01) + 0.005
     this.t = random(10);
     // 预设当前未被鼠标悬浮
     this.isHover = false;
