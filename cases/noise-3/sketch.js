@@ -7,13 +7,13 @@ function setup() {
 }
 
 function draw() {
-	background(0, 5);
+	background(0, 10);
 
 	var x = width * noise(t);
 	var y = height * noise(t+5);
 	var r = 255 * noise(t+10);
-	var g = 255 * noise(t+15);
-	var b = 255 * noise(t+20);
+	var g = 255 * noise(t+100);
+	var b = 255 * noise(t+200);
 
 	noStroke();
 	fill(r, g, b);

@@ -15,7 +15,7 @@ function draw() {
 		var rad = 200 * noise(i * 0.01, t * 0.005);
 		var x = rad * cos(ang);
 		var y = rad * sin(ang);
-		curveVertex(x, y);
+		curveVertex(x,y);
 	}
 	endShape(CLOSE);
 
