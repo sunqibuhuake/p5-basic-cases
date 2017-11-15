@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>js-class</title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script src="./jq.min.js"></script>
+    <script src="../p5/p5.js"></script>
+    <div id="btn">0</div>
+    <script>
+
+      // 声明一个count 变量作为累加器
+      var count = 0;
+
+      var add;
+      function setup() {
+        add = new Add();
+      }
+      function draw() {
+        // draw 函数每运行一次， count 加一
+        // count = count + 1;
+        // 输出 count
+        // console.log(count);
+        add.inc(1);
+        console.log(add.num);
+      }
+      function Add() {
+        this.num = 0;
+      }
+      Add.prototype = {
+        inc: function(n) {
+          this.num = this.num + n;
+          document.getElementById('btn').innerHTML = this.num;
+        }
+      }
+    </script>
+  </body>
+</html>

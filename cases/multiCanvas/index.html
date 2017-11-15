@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #left-div {
+            float: left;
+            width: 50%;
+        }
+
+        #right-div {
+            float: left;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container">
+    <div id="left-div">
+        this is a div
+    </div>
+    <div id="right-div">
+        this is another div
+    </div>
+</div>
+<script src="../../p5/p5.js"></script>
+<script>
+
+    var a = new p5();
+    // a.colorMode('RGB')
+    // var c = a.color(a.random(255), a.random(255), a.random(255));
+    var c = a.random(255);
+
+    function drawACircle(p) {
+        p.setup = function () {
+            p.createCanvas(300, 300);
+        }
+        p.draw = function () {
+            p.background(100)
+            var cc = p.color(c)
+            console.log(cc);
+            p.fill(cc);
+            p.noStroke();
+            p.ellipse(150, 150, 100, 100);
+        }
+    }
+    function drawARect(p) {
+        p.setup = function () {
+            p.rectMode('CENTER')
+            p.createCanvas(300, 300);
+        }
+        p.draw = function () {
+            p.background(0)
+            var cc = p.color(c)
+            console.log(cc);
+            p.fill(255, 0, 0);
+            p.noStroke();
+            p.rect(150, 150, 100, 100);
+        }
+    }
+
+    new p5(drawACircle, 'left-div');
+    new p5(drawARect, document.getElementById('right-div'));
+
+</script>
+<!-- P5 默认绘制在body 标签内容最后面 -->
+<!-- append -->
+
+
+</body>
+
+</html>

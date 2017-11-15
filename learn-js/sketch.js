@@ -48,13 +48,13 @@ function draw() {
 
 
 // CustomCirlce Class
-function CustomCircle(radius, c, text, pos) {
-    this.radius = radius
+function CustomCircle(originRadius, c, text, pos) {
+    this.originRadius = originRadius
     this.c = c
     this.text = text
     this.pos = pos
     // 非传入属性
-    this.delta = random(0.01) + 0.005
+    this.delta = random(0.003) + 0.002
     this.t = random(10);
     // 预设当前未被鼠标悬浮
     this.isHover = false;
@@ -64,19 +64,27 @@ function CustomCircle(radius, c, text, pos) {
 CustomCircle.prototype = {
   draw: function() {
     this.drawCircle()
+    // 执行鼠标检测 改变this.isHover 状态值
+    this.mouseDetect();
     this.drawText()
     this.move()
   },
   drawCircle: function() {
+    noFill();
     stroke(this.c)
     strokeWeight(4)
-    this.currentRadius = (this.radius / 2 + this.radius / 2  * noise(this.t));
+    this.currentRadius = (this.originRadius / 2 + this.originRadius / 2  * noise(this.t));
     // console.log(d);
     ellipse( this.pos.x, this.pos.y, this.currentRadius * 2, this.currentRadius * 2);
   },
   drawText: function() {
     textSize(12)
     textAlign(CENTER, CENTER)
+    if(this.isHover) {
+      fill(255);
+    } else {
+      fill(this.c);
+    }
     strokeWeight(1)
     text(this.text, this.pos.x, this.pos.y)
   },
@@ -98,10 +106,15 @@ CustomCircle.prototype = {
     var mx = mouseX;
     var my = mouseY;
 
+    var distance = dist(cx, cy, mx, my);
+    if(distance > this.currentRadius) {
+      this.isHover = false;
+    } else {
+      this.isHover = true;
+    }
+
     // dist()函数获取两点间距
     // 与当前半径(this.currentRadius)判断
 
   }
 }
-
-

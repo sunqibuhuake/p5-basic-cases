@@ -2,14 +2,15 @@ var img = null;
 // 存储所有的黑色坐标 一共九千多个
 var particlePosArr =[];
 
+//全局变量
 var keyParticles = [];
 
 function preload() {
 	img = loadImage('http://oojq4xaei.bkt.clouddn.com/p5-500px.png');
-
 }
 function setup() {
 	frameRate(30)
+	rectMode(CENTER)
 	createCanvas(500, 500);
 	pixelDensity(1);
 	image(img, 0, 0);
@@ -30,7 +31,6 @@ function setup() {
 			}
 		}
 	}
-
 	particlePosArr.forEach(function(obj) {
 		if(random(1) < 0.1) {
 			var x = random(width);
@@ -39,7 +39,6 @@ function setup() {
 			keyParticles.push(p);
 		}
 	})
-
 	// noLoop();
 }
 function draw() {
@@ -47,12 +46,8 @@ function draw() {
 	var count = 0;
 	background(0);
 	keyParticles.forEach(function(p) {
-
 		p.draw();
-
 	})
-
-	console.log(count)
 }
 
 function Particle(x1, y1, x2, y2) {
@@ -69,24 +64,23 @@ function Particle(x1, y1, x2, y2) {
 		x: x2,
 		y: y2
 	}
-	this.amt = random(0.5);
+	this.amt = 0.2 + random(0.3);
 	this.color = color(random(255), random(255), random(255), random(255));
 	this.d = random(8);
 }
 Particle.prototype = {
 	move: function() {
 		var x = lerp(this.originPos.x, this.finalPos.x, this.amt)
-		this.originPos.x = x;
 		var y = lerp(this.originPos.y, this.finalPos.y, this.amt)
-		this.originPos.y = y;
+		this.originPos = {
+			x: x,
+			y: y
+		}
 	},
 	draw: function() {
 		fill(this.color);
 		noStroke();
-		ellipse(this.originPos.x, this.originPos.y, this.d, this.d)
+		rect(this.originPos.x, this.originPos.y, this.d, this.d)
 		this.move()
-	},
-	className: 'Particle',
-
-
+	}
 }
